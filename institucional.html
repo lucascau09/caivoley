@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Institucional | Club Atlético Independiente - Vóley</title>
+<link rel="icon" type="image/png" href="escudo.jpg">
+<meta name="description" content="Historia de la Rama Vóley del Club Atlético Independiente.">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="brand">
+        <img src="escudo.jpg" alt="Escudo CAI" class="brand-logo">
+        <span class="brand-text">CAI <em>Vóley</em></span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-burger" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </label>
+      <nav class="nav-menu">
+        <a href="index.html">Inicio</a>
+        <a href="institucional.html" class="activa">Institucional</a>
+        <a href="plantel.html">Plantel</a>
+        <a href="staff.html">Staff Técnico</a>
+        <a href="indumentaria.html">Indumentaria</a>
+        <a href="galeria.html">Galería</a>
+        <a href="info.html">Categorías y Horarios</a>
+        <button class="nav-menu__cta" data-abrir-inscripcion>Inscribite</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="franja-cancha"></div>
+
+  <main>
+    <!-- BANNER DE 2 FOTOS — transición triangular cada 3s -->
+    <section class="institucional-hero" data-reveal>
+      <div class="institucional-hero__media">
+        <img class="institucional-hero__img institucional-hero__img--a"
+             src="https://placehold.co/1600x900/0A2354/FFFFFF?text=CAI+Voley+-+Foto+1&font=inter" alt="Club Atlético Independiente — Vóley">
+        <img class="institucional-hero__img institucional-hero__img--b"
+             src="https://placehold.co/1600x900/14418E/FFFFFF?text=CAI+Voley+-+Foto+2&font=inter" alt="">
+        <div class="institucional-hero__degrade"></div>
+        <div class="institucional-hero__texto"><p>Club Atlético Independiente · Rama Vóley</p></div>
+      </div>
+    </section>
+
+    <section class="historia">
+      <div class="tri tri--1 tri-azul" style="width:20rem;height:20rem;top:0;right:-6rem;"></div>
+      <div class="tri tri--4 tri-claro" style="width:8rem;height:8rem;bottom:0;left:-1rem;"></div>
+      <div class="tri tri--2 tri-medio" style="width:12rem;height:12rem;bottom:-3rem;right:10vw;"></div>
+      <div class="tri tri--3 tri-claro" style="width:6rem;height:6rem;top:8rem;left:8vw;opacity:.5;"></div>
+      <div class="tri tri--1 tri-medio" style="width:9rem;height:9rem;bottom:6rem;left:40vw;"></div>
+      <div class="contenedor">
+        <span class="section-eyebrow">Institucional</span>
+        <h1 class="section-title" data-reveal>Nuestra historia</h1>
+        <div class="historia__caja" data-reveal>
+          <p>
+            La Escuela de Vóley del Club Atlético Independiente nace con el compromiso de formar deportistas y personas a través de los valores que caracterizan a nuestra institución. Como parte de un club con una extensa trayectoria en el deporte jujeño, el vóley ha crecido año tras año gracias al trabajo de entrenadores, dirigentes, jugadores y familias que hicieron posible el desarrollo de las categorías formativas y competitivas. Hoy continuamos ese camino con el mismo objetivo: brindar un espacio de aprendizaje, compañerismo y superación, promoviendo el amor por el deporte y representando con orgullo los colores de Independiente en cada desafío.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:var(--azul-900); color:var(--blanco); overflow:hidden;">
+      <div class="tri tri--2 tri-oscuro" style="width:24rem;height:24rem;bottom:-8rem;left:-8rem;"></div>
+      <div class="contenedor" data-reveal style="text-align:center; position:relative; z-index:1;">
+        <span class="section-eyebrow" style="color:var(--azul-100); border-color:var(--azul-100);">Conocé al equipo</span>
+        <h2 class="section-title" style="color:var(--blanco);">Staff técnico completo</h2>
+        <p class="section-lead" style="color:var(--azul-100); margin-inline:auto;">Coordinación, entrenadores y entrenadoras de cada rama y categoría.</p>
+        <a href="staff.html" class="btn btn-acento" style="margin-top:1rem;">Ver staff técnico</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer textura-triangulos" id="contacto">
+    <div class="footer-wrap">
+      <div class="footer-brand"><strong>Club Atlético Independiente</strong> — Rama Vóley</div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/caivoleyoficial/?hl=es-la" target="_blank" rel="noopener" class="btn btn-instagram">Instagram</a>
+        <a href="https://wa.me/5493885961022" target="_blank" rel="noopener" class="btn btn-whatsapp">WhatsApp</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Club Atlético Independiente — Rama Vóley. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <button class="btn btn-acento flotante-inscripcion" data-abrir-inscripcion>📋 Inscribite</button>
+
+  <div class="modal" id="modal-inscripcion">
+    <div class="modal__caja modal__caja--form" style="max-width:480px;">
+      <button class="modal__cerrar" aria-label="Cerrar">✕</button>
+      <form class="inscripcion__form" id="form-inscripcion">
+        <h3>Sumate a la escuela</h3>
+        <p class="section-lead">Completá los datos y te contactamos por WhatsApp.</p>
+        <div class="campo">
+          <label for="i-nombre">Nombre y apellido del chico/a</label>
+          <input id="i-nombre" name="nombre" type="text" required>
+        </div>
+        <div class="campo-fila">
+          <div class="campo">
+            <label for="i-edad">Edad</label>
+            <input id="i-edad" name="edad" type="number" min="4" max="99" required>
+          </div>
+          <div class="campo">
+            <label for="i-celular">Celular de contacto</label>
+            <input id="i-celular" name="celular" type="tel" required placeholder="Ej: 388 5551234">
+          </div>
+        </div>
+        <div class="campo-fila">
+          <div class="campo">
+            <label>Rama</label>
+            <div class="select-custom select-custom--form" id="i-rama" data-valor="Masculino">
+              <button type="button" class="select-custom__boton">
+                <span class="select-custom__label">Masculino</span>
+                <svg class="select-custom__flecha" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0 L5 6 L10 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </button>
+              <ul class="select-custom__lista">
+                <li class="select-custom__opcion select-custom__opcion--activa" data-valor="Masculino">Masculino</li>
+                <li class="select-custom__opcion" data-valor="Femenino">Femenino</li>
+              </ul>
+            </div>
+          </div>
+          <div class="campo">
+            <label>Categoría</label>
+            <div class="select-custom select-custom--form" id="i-categoria" data-valor="Escuela">
+              <button type="button" class="select-custom__boton">
+                <span class="select-custom__label">Escuela</span>
+                <svg class="select-custom__flecha" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0 L5 6 L10 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </button>
+              <ul class="select-custom__lista">
+                <li class="select-custom__opcion select-custom__opcion--activa" data-valor="Escuela">Escuela</li>
+                <li class="select-custom__opcion" data-valor="Sub-12">Sub-12</li>
+                <li class="select-custom__opcion" data-valor="Sub-14">Sub-14</li>
+                <li class="select-custom__opcion" data-valor="Sub-16">Sub-16</li>
+                <li class="select-custom__opcion" data-valor="Sub-18">Sub-18</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-acento" style="justify-content:center;">Enviar por WhatsApp</button>
+      </form>
+      <div class="inscripcion__aviso" hidden>
+        <div style="font-size:2.4rem;">✅</div>
+        <strong>Datos enviados</strong>
+        <p class="section-lead" style="margin:0;">En breve te van a contactar por WhatsApp. Si se abrió una pestaña de WhatsApp, tocá "Enviar" para confirmar el mensaje.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

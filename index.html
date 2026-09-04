@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escuela de Vóley | Club Atlético Independiente</title>
+<link rel="icon" type="image/png" href="escudo.jpg">
+<meta name="description" content="Sitio oficial de la escuela de Vóley del Club Atlético Independiente">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="tiene-splash">
+
+  <!-- =========================================================
+       PANTALLA DE CARGA
+       ========================================================= -->
+  <div class="intro-splash" aria-hidden="true">
+    <div class="tri tri--1 tri-oscuro" style="width:44vw;height:44vw;top:-14vw;left:-10vw;"></div>
+    <div class="tri tri--2 tri-oscuro" style="width:38vw;height:38vw;bottom:-16vw;right:-10vw;"></div>
+    <div class="tri tri--3 tri-medio" style="width:20vw;height:20vw;top:8vh;right:6vw;transform:rotate(18deg);"></div>
+    <div class="tri tri--4 tri-medio" style="width:16vw;height:16vw;top:40vh;left:4vw;transform:rotate(-10deg);"></div>
+    <div class="tri tri--1 tri-acento" style="width:10vw;height:10vw;bottom:14vh;left:14vw;transform:rotate(25deg);"></div>
+    <div class="tri tri--2 tri-claro" style="width:9vw;height:9vw;bottom:22vh;right:16vw;opacity:.18;"></div>
+    <div class="tri tri--3 tri-claro" style="width:7vw;height:7vw;top:16vh;left:30vw;opacity:.16;transform:rotate(8deg);"></div>
+    <div class="tri tri--4 tri-oscuro" style="width:13vw;height:13vw;top:2vh;left:44vw;opacity:.22;transform:rotate(-16deg);"></div>
+    <div class="tri tri--1 tri-medio" style="width:8vw;height:8vw;bottom:6vh;right:38vw;transform:rotate(40deg);"></div>
+    <div class="tri tri--2 tri-acento" style="width:6vw;height:6vw;top:60vh;right:8vw;opacity:.16;"></div>
+    <div class="tri tri--3 tri-oscuro" style="width:15vw;height:15vw;bottom:-4vh;left:38vw;opacity:.28;"></div>
+    <div class="tri tri--4 tri-claro" style="width:5vw;height:5vw;top:30vh;right:30vw;opacity:.2;transform:rotate(-30deg);"></div>
+    <div class="intro-splash__contenido">
+      <div class="intro-splash__logos">
+        <img src="escudo.jpg" alt="Escudo Club Atlético Independiente">
+        <img src="escuela.jpg" alt="Logo Escuelita de Vóley">
+      </div>
+      <p class="intro-splash__texto">Club Atlético Independiente</p>
+      <div class="intro-splash__progreso"><span></span></div>
+    </div>
+    <div class="intro-splash__cortina" aria-hidden="true">
+      <span class="diente"></span><span class="diente"></span><span class="diente"></span><span class="diente"></span>
+      <span class="diente"></span><span class="diente"></span><span class="diente"></span><span class="diente"></span>
+      <span class="diente"></span><span class="diente"></span><span class="diente"></span><span class="diente"></span>
+      <span class="diente"></span><span class="diente"></span><span class="diente"></span><span class="diente"></span>
+      <span class="diente"></span><span class="diente"></span><span class="diente"></span><span class="diente"></span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a href="index.html" class="brand">
+        <img src="escudo.jpg" alt="Escudo CAI" class="brand-logo">
+        <span class="brand-text">CAI <em>Vóley</em></span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-burger" aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </label>
+      <nav class="nav-menu">
+        <a href="index.html" class="activa">Inicio</a>
+        <a href="institucional.html">Institucional</a>
+        <a href="plantel.html">Plantel</a>
+        <a href="staff.html">Staff Técnico</a>
+        <a href="indumentaria.html">Indumentaria</a>
+        <a href="galeria.html">Galería</a>
+        <a href="info.html">Categorías y Horarios</a>
+        <button class="nav-menu__cta" data-abrir-inscripcion>Inscribite</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- =========================================================
+         HERO
+         ========================================================= -->
+    <section class="hero-banner">
+      <div class="tri tri--3 tri-azul" style="width:60vw;height:22rem;top:-4rem;left:-10vw;"></div>
+      <div class="tri tri--1 tri-medio" style="width:14rem;height:14rem;top:1rem;right:-3rem;"></div>
+      <div class="tri tri--4 tri-claro" style="width:8rem;height:8rem;top:8rem;right:14vw;opacity:.16;"></div>
+      <div class="tri tri--2 tri-oscuro" style="width:10rem;height:10rem;bottom:-2rem;left:10vw;opacity:.25;"></div>
+      <div class="tri tri--1 tri-acento" style="width:5rem;height:5rem;top:3rem;left:30vw;opacity:.14;"></div>
+      <div class="hero-banner__logos">
+        <img src="escudo.jpg" alt="Escudo Club Atlético Independiente">
+        <img src="escuela.jpg" alt="Logo Escuelita de Vóley">
+      </div>
+      <h1>Escuela de Vóley</h1>
+      <h1>Club Atlético Independiente</h1>
+      <p class="hero-banner__lema">ADN en formación</p>
+    </section>
+
+    <!-- SLIDER -->
+    <section class="slider textura-triangulos" aria-label="Galería de fotos del club">
+      <div class="slider__pista">
+        <figure class="slider__item"><img src="foto/foto1.jpg" alt="Foto del club 1"></figure>
+        <figure class="slider__item"><img src="foto/foto2.jpg" alt="Foto del club 2"></figure>
+        <figure class="slider__item"><img src="foto/foto3.jpg" alt="Foto del club 3"></figure>
+        <figure class="slider__item"><img src="foto/foto4.jpg" alt="Foto del club 4"></figure>
+        <figure class="slider__item"><img src="foto/foto5.jpg" alt="Foto del club 5"></figure>
+        <figure class="slider__item"><img src="foto/foto6.jpg" alt="Foto del club 6"></figure>
+        <figure class="slider__item"><img src="foto/foto7.jpg" alt="Foto del club 7"></figure>
+        <figure class="slider__item"><img src="foto/foto8.jpg" alt="Foto del club 8"></figure>
+        <figure class="slider__item" aria-hidden="true"><img src="foto/foto1.jpg" alt=""></figure>
+        <figure class="slider__item" aria-hidden="true"><img src="foto/foto2.jpg" alt=""></figure>
+        <figure class="slider__item" aria-hidden="true"><img src="foto/foto3.jpg" alt=""></figure>
+        <figure class="slider__item" aria-hidden="true"><img src="foto/foto4.jpg" alt=""></figure>
+        <figure class="slider__item" aria-hidden="true"><img src="foto/foto5.jpg" alt=""></figure>
+        <figure class="slider__item" aria-hidden="true"><img src="foto/foto6.jpg" alt=""></figure>
+        <figure class="slider__item" aria-hidden="true"><img src="foto/foto7.jpg" alt=""></figure>
+        <figure class="slider__item" aria-hidden="true"><img src="foto/foto8.jpg" alt=""></figure>
+      </div>
+    </section>
+
+    <!-- WIDGETS + NOTICIAS -->
+    <section class="widgets">
+      <div class="tri tri--4 tri-azul" style="width:16rem;height:16rem;top:0;right:0;"></div>
+      <div class="tri tri--2 tri-medio" style="width:10rem;height:10rem;bottom:2rem;left:-3rem;"></div>
+      <div class="tri tri--1 tri-claro" style="width:8rem;height:8rem;top:6rem;left:6vw;opacity:.5;"></div>
+      <div class="contenedor">
+        <span class="section-eyebrow">Actividad</span>
+        <h2 class="section-title" data-reveal>Partidos y resultados</h2>
+
+        <div class="widgets__grid">
+          <div class="widget-card" data-reveal>
+            <h3>📅 Próximos partidos</h3>
+            <div class="partido">
+              <div>
+                <div class="partido__equipos">Sub-16 masc-fem |CAI vs. Sirio|</div>
+                <div class="partido__meta">Sáb 25/07 · 15:00 hs · Local</div>
+              </div>
+            </div>
+            <div class="partido">
+              <div>
+                <div class="partido__equipos">Sub-14 fem |CAI vs. Gimnasia|</div>
+                <div class="partido__meta">Dom 26/07 · 10:00 hs · Visitante</div>
+              </div>
+            </div>
+            <div class="partido">
+              <div>
+                <div class="partido__equipos">Sub-18 masc-fem |CAI vs. Universitario|</div>
+                <div class="partido__meta">Sáb 01/08 · 16:30 hs · Local</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="widget-card" data-reveal>
+            <h3>🏐 Últimos resultados</h3>
+            <div class="partido">
+              <div>
+                <div class="partido__equipos">Sub-16 masc |CAI vs. CAG|</div>
+                <div class="partido__meta">Sáb 18/07 · Local</div>
+              </div>
+              <span class="partido__resultado">3 - 1</span>
+            </div>
+            <div class="partido">
+              <div>
+                <div class="partido__equipos">Sub-14 fem |CAI vs. Sirio|</div>
+                <div class="partido__meta">Vie 17/07 · Visitante</div>
+              </div>
+              <span class="partido__resultado">2 - 3</span>
+            </div>
+            <div class="partido">
+              <div>
+                <div class="partido__equipos">Sub-18 fem |CAI vs. EVSE|</div>
+                <div class="partido__meta">Dom 12/07 · Local</div>
+              </div>
+              <span class="partido__resultado">3 - 0</span>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top:2.6rem;" data-reveal>Noticias recientes</h2>
+        <div class="noticias__grid">
+          <article class="noticia-card" data-reveal>
+            <img src="noticia/noticia1.jpg" alt="Noticia 1">
+            <div class="noticia-card__cuerpo">
+              <span class="noticia-card__fecha">26 de Mayo, 2026</span>
+              <h4>🏐 Se jugó el Pre Regional Masculino Sub 18 🤩</h4>
+              <p>Durante la jornada se vivieron grandes partidos y mucho nivel en la rama masculina, definiendo a los equipos que representarán a Jujuy en La Rioja💪🏻👏🏻</p>
+            </div>
+          </article>
+          <article class="noticia-card" data-reveal>
+            <img src="noticia/noticia2.jpg" alt="Noticia 2">
+            <div class="noticia-card__cuerpo">
+              <span class="noticia-card__fecha">17 de Mayo, 2026</span>
+              <h4>Selectivo Sub 14 Femenino</h4>
+              <p>Una jornada llena de talento, compromiso y mucha pasión por el vóley🙌🏻👏🏻 Las jugadoras dejaron todo en el entrenamiento y demostraron sus ganas de representar de la mejor manera 💯🏆</p>
+            </div>
+          </article>
+          <article class="noticia-card" data-reveal>
+            <img src="noticia/noticia3.jpg" alt="Noticia 3">
+            <div class="noticia-card__cuerpo">
+              <span class="noticia-card__fecha">13 de Febrero, 2026</span>
+              <h4>🏐#VOLEY | HOY FUE UNA LINDA JORNADA DE VOLEY</h4>
+              <p>💯🏆Rumbo al carnaval de voley, visitando al club Sportivo Rivadavia🏐</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer textura-triangulos" id="contacto">
+    <div class="tri tri--2 tri-oscuro" style="width:18rem;height:18rem;bottom:-6rem;left:-6rem;background:var(--azul-700);opacity:.4;"></div>
+    <div class="tri tri--1 tri-oscuro" style="width:10rem;height:10rem;top:-3rem;right:6rem;background:var(--azul-800);opacity:.5;"></div>
+    <div class="tri tri--4 tri-oscuro" style="width:7rem;height:7rem;bottom:2rem;right:14vw;background:var(--azul-700);opacity:.45;"></div>
+    <div class="tri tri--3 tri-oscuro" style="width:5rem;height:5rem;top:1rem;left:20vw;background:var(--azul-500);opacity:.3;"></div>
+    <div class="footer-wrap">
+      <div class="footer-brand"><strong>Club Atlético Independiente</strong> — Rama Vóley</div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/caivoleyoficial/?hl=es-la" target="_blank" rel="noopener" class="btn btn-instagram">Instagram</a>
+        <a href="https://wa.me/5493885961022" target="_blank" rel="noopener" class="btn btn-whatsapp">WhatsApp</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Club Atlético Independiente — Rama Vóley. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <button class="btn btn-acento flotante-inscripcion" data-abrir-inscripcion>📋 Inscribite</button>
+
+  <!-- MODAL DE NOTICIA -->
+  <div class="modal" id="modal-noticia">
+    <div class="modal__caja">
+      <button class="modal__cerrar" aria-label="Cerrar">✕</button>
+      <img class="modal-noticia__img" src="" alt="">
+      <div class="modal-noticia__cuerpo">
+        <span class="modal-noticia__fecha"></span>
+        <h3 class="modal-noticia__titulo"></h3>
+        <p class="modal-noticia__texto"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE INSCRIPCIÓN (incluido en todas las páginas) -->
+  <div class="modal" id="modal-inscripcion">
+    <div class="modal__caja modal__caja--form" style="max-width:480px;">
+      <button class="modal__cerrar" aria-label="Cerrar">✕</button>
+      <form class="inscripcion__form" id="form-inscripcion">
+        <h3>Sumate a la escuela</h3>
+        <p class="section-lead">Completá los datos y te contactamos por WhatsApp.</p>
+        <div class="campo">
+          <label for="i-nombre">Nombre y apellido del chico/a</label>
+          <input id="i-nombre" name="nombre" type="text" required>
+        </div>
+        <div class="campo-fila">
+          <div class="campo">
+            <label for="i-edad">Edad</label>
+            <input id="i-edad" name="edad" type="number" min="4" max="99" required>
+          </div>
+          <div class="campo">
+            <label for="i-celular">Celular de contacto</label>
+            <input id="i-celular" name="celular" type="tel" required placeholder="Ej: 388 5551234">
+          </div>
+        </div>
+        <div class="campo-fila">
+          <div class="campo">
+            <label>Rama</label>
+            <div class="select-custom select-custom--form" id="i-rama" data-valor="Masculino">
+              <button type="button" class="select-custom__boton">
+                <span class="select-custom__label">Masculino</span>
+                <svg class="select-custom__flecha" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0 L5 6 L10 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </button>
+              <ul class="select-custom__lista">
+                <li class="select-custom__opcion select-custom__opcion--activa" data-valor="Masculino">Masculino</li>
+                <li class="select-custom__opcion" data-valor="Femenino">Femenino</li>
+              </ul>
+            </div>
+          </div>
+          <div class="campo">
+            <label>Categoría</label>
+            <div class="select-custom select-custom--form" id="i-categoria" data-valor="Escuela">
+              <button type="button" class="select-custom__boton">
+                <span class="select-custom__label">Escuela</span>
+                <svg class="select-custom__flecha" width="10" height="6" viewBox="0 0 10 6"><path d="M0 0 L5 6 L10 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </button>
+              <ul class="select-custom__lista">
+                <li class="select-custom__opcion select-custom__opcion--activa" data-valor="Escuela">Escuela</li>
+                <li class="select-custom__opcion" data-valor="Sub-12">Sub-12</li>
+                <li class="select-custom__opcion" data-valor="Sub-14">Sub-14</li>
+                <li class="select-custom__opcion" data-valor="Sub-16">Sub-16</li>
+                <li class="select-custom__opcion" data-valor="Sub-18">Sub-18</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-acento" style="justify-content:center;">Enviar por WhatsApp</button>
+      </form>
+      <div class="inscripcion__aviso" hidden>
+        <div style="font-size:2.4rem;">✅</div>
+        <strong>Datos enviados</strong>
+        <p class="section-lead" style="margin:0;">En breve te van a contactar por WhatsApp. Si se abrió una pestaña de WhatsApp, tocá "Enviar" para confirmar el mensaje.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

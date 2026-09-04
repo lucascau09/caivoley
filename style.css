@@ -1,0 +1,828 @@
+/* =========================================================
+   CLUB ATLÉTICO INDEPENDIENTE — RAMA VÓLEY
+   Hoja de estilos global
+   Paleta: Azul (predominante) / Blanco / Negro + acento "pelota"
+   Motivo de marca: triángulos en distintos ángulos, inspirados
+   en la trayectoria de un remate y las líneas de la cancha.
+   ========================================================= */
+
+:root{
+  --azul-900:#0A2354;
+  --azul-800:#0E3070;
+  --azul-700:#14418E;
+  --azul-500:#1E56B0;
+  --azul-100:#E8EEFB;
+  --blanco:#FFFFFF;
+  --negro:#0A0A0A;
+  --acento:#FF7A3D;      /* naranja pelota de vóley: uso puntual, nunca de fondo */
+  --acento-suave:#FFE4D3;
+  --gris-900:#141414;
+  --gris-600:#5B6270;
+  --gris-100:#F4F6FA;
+  --borde:#DCE3F0;
+
+  --fuente-display:'Bebas Neue', 'Oswald', sans-serif;
+  --fuente-cuerpo:'Inter', 'Segoe UI', sans-serif;
+
+  --radio:10px;
+  --sombra: 0 10px 30px rgba(10,35,84,.12);
+  --sombra-fuerte: 0 24px 60px rgba(10,35,84,.28);
+  --franja: repeating-linear-gradient(135deg, var(--azul-700) 0 18px, var(--azul-800) 18px 36px);
+  --dur: .3s;
+  --easing: cubic-bezier(.22,.9,.3,1);
+}
+
+/* ---------- Reset básico ---------- */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--blanco);
+  color:var(--negro);
+  font-family:var(--fuente-cuerpo);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; margin:0; padding:0; }
+button{ font-family:inherit; }
+h1,h2,h3{
+  font-family:var(--fuente-display);
+  letter-spacing:.03em;
+  color:var(--azul-900);
+  margin:0 0 .4em;
+}
+.contenedor{
+  width:100%;
+  max-width:1220px;
+  margin-inline:auto;
+  padding-inline:1.25rem;
+  position:relative;
+}
+section{ padding:3.4rem 0; position:relative; }
+.section-eyebrow{
+  display:inline-block;
+  font-family:var(--fuente-display);
+  letter-spacing:.18em;
+  font-size:.8rem;
+  color:var(--azul-500);
+  border-bottom:3px solid var(--azul-500);
+  padding-bottom:.15rem;
+  margin-bottom:.6rem;
+}
+.section-title{ font-size:clamp(1.6rem,4vw,2.4rem); }
+.section-lead{ color:var(--gris-600); max-width:60ch; }
+
+.franja-cancha{ height:10px; background:var(--franja); }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+}
+
+/* =========================================================
+   MOTIVO DE MARCA: triángulos decorativos
+   Divs sueltos con clip-path, en distintos ángulos y tamaños.
+   Puramente decorativos (aria-hidden), muy baja opacidad sobre
+   fondos claros, algo más marcados sobre fondos oscuros.
+   ========================================================= */
+.tri{
+  position:absolute;
+  pointer-events:none;
+  z-index:0;
+}
+.tri--1{ clip-path:polygon(0 0, 100% 30%, 20% 100%); }
+.tri--2{ clip-path:polygon(100% 0, 100% 100%, 0 65%); }
+.tri--3{ clip-path:polygon(50% 0, 100% 100%, 0 100%); }
+.tri--4{ clip-path:polygon(0 0, 100% 0, 0 100%); }
+.tri-azul{ background:var(--azul-500); opacity:.08; }
+.tri-azul-fuerte{ background:var(--azul-100); opacity:.9; }
+.tri-oscuro{ background:var(--azul-900); opacity:.35; }
+.tri-acento{ background:var(--acento); opacity:.12; }
+
+/* Corte anguloso entre secciones, en vez de una línea recta */
+.corte-superior{ clip-path:polygon(0 3.5vw, 100% 0, 100% 100%, 0 100%); }
+.corte-inferior{ clip-path:polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 3.5vw)); }
+
+/* =========================================================
+   REVELADO AL SCROLL (usado en toda la página vía [data-reveal])
+   ========================================================= */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .7s var(--easing), transform .7s var(--easing);
+}
+[data-reveal].en-vista{ opacity:1; transform:none; }
+[data-reveal="tri"]{ transform:translateY(26px) rotate(-4deg); }
+[data-reveal="tri"].en-vista{ transform:none; }
+
+/* =========================================================
+   1. PANTALLA DE CARGA
+   ========================================================= */
+.intro-splash{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:radial-gradient(circle at 50% 35%, var(--azul-700) 0%, var(--azul-900) 75%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:1.6rem;
+  text-align:center;
+  color:var(--blanco);
+  overflow:hidden;
+  transition:transform .8s var(--easing), visibility .8s;
+}
+.intro-splash .tri{ z-index:0; }
+.intro-splash__contenido{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; gap:1.6rem; }
+.intro-splash__logos{ display:flex; align-items:center; justify-content:center; gap:2.2rem; flex-wrap:wrap; }
+.intro-splash__logos img{
+  width:clamp(190px, 30vw, 340px); height:clamp(190px, 30vw, 340px); object-fit:contain;
+  background:rgba(255,255,255,.06);
+  border:2px solid rgba(255,255,255,.35);
+  border-radius:50%;
+  padding:.6rem;
+  animation:pulsoLogo 2.4s ease-in-out infinite;
+}
+.intro-splash__logos img:nth-child(2){ animation-delay:.3s; }
+.intro-splash__texto{
+  font-family:var(--fuente-display);
+  font-size:clamp(1.1rem,3vw,1.6rem);
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  opacity:.92;
+}
+.intro-splash__progreso{
+  width:min(280px, 60vw);
+  height:4px;
+  background:rgba(255,255,255,.2);
+  border-radius:999px;
+  overflow:hidden;
+}
+.intro-splash__progreso span{
+  display:block; height:100%; width:0%;
+  background:linear-gradient(90deg, var(--acento), var(--blanco));
+  border-radius:999px;
+}
+@keyframes pulsoLogo{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.06); } }
+
+.intro-splash--oculto{ opacity:0; pointer-events:none; transition:opacity .4s ease; }
+.tiene-splash{ overflow:hidden; }
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+.site-header{
+  position:sticky; top:0; z-index:500;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--borde);
+}
+.nav-wrap{
+  max-width:1220px; margin-inline:auto; padding:.7rem 1.25rem;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+.brand{ display:flex; align-items:center; gap:.6rem; }
+.brand-logo{ width:46px; height:46px; border-radius:50%; object-fit:cover; }
+.brand-text{ font-family:var(--fuente-display); font-size:1.3rem; color:var(--azul-900); letter-spacing:.04em; }
+.brand-text em{ color:var(--azul-500); font-style:normal; }
+
+.nav-toggle{ display:none; }
+.nav-burger{ display:none; flex-direction:column; justify-content:center; gap:5px; width:34px; height:34px; cursor:pointer; }
+.nav-burger span{ display:block; height:3px; border-radius:2px; background:var(--azul-900); transition:transform .25s ease, opacity .25s ease; }
+
+.nav-menu{ display:flex; align-items:center; gap:1.3rem; flex-wrap:wrap; }
+.nav-menu a{
+  font-weight:600; font-size:.92rem; color:var(--gris-900);
+  padding:.4rem .1rem; border-bottom:2px solid transparent;
+  transition:color .2s, border-color .2s;
+}
+.nav-menu a:hover, .nav-menu a:focus-visible{ color:var(--azul-700); border-color:var(--azul-500); }
+.nav-menu a.activa{ color:var(--azul-700); border-color:var(--azul-700); }
+.nav-menu__cta{
+  background:var(--acento); color:var(--blanco) !important;
+  padding:.5rem 1rem !important; border-radius:999px; border-bottom:none !important;
+}
+.nav-menu__cta:hover{ background:#e8672a; transform:translateY(-1px); }
+
+@media (max-width:900px){
+  .nav-burger{ display:flex; }
+  .nav-menu{
+    position:absolute; top:100%; left:0; right:0; flex-direction:column; align-items:stretch; gap:0;
+    background:var(--blanco); border-bottom:1px solid var(--borde);
+    max-height:0; overflow:hidden; transition:max-height .35s ease;
+  }
+  .nav-menu a{ padding:.9rem 1.25rem; border-bottom:1px solid var(--borde); border-left:3px solid transparent; }
+  .nav-menu a:hover{ border-left-color:var(--azul-500); border-bottom:1px solid var(--borde); }
+  .nav-menu__cta{ border-radius:0; text-align:center; margin:.7rem 1.25rem; }
+  .nav-toggle:checked ~ .nav-menu{ max-height:600px; }
+  .nav-toggle:checked ~ .nav-burger span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+  .nav-toggle:checked ~ .nav-burger span:nth-child(2){ opacity:0; }
+  .nav-toggle:checked ~ .nav-burger span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+}
+
+/* =========================================================
+   2. HERO (Inicio)
+   ========================================================= */
+.hero-banner{
+  position:relative;
+  background:linear-gradient(180deg, var(--azul-900) 0%, var(--azul-700) 100%);
+  color:var(--blanco);
+  text-align:center;
+  padding:4.5rem 1.25rem 5.5rem;
+  overflow:hidden;
+}
+.hero-banner::after{
+  content:"";
+  position:absolute; inset:auto 0 0 0; height:60px;
+  background:var(--blanco);
+  clip-path:polygon(0 100%, 100% 100%, 100% 0, 66% 100%, 33% 0, 0 100%);
+}
+.hero-banner__logos{ position:relative; z-index:1; display:flex; justify-content:center; align-items:center; gap:1.4rem; margin-bottom:1.4rem; }
+.hero-banner__logos img{
+  width:96px; height:96px; object-fit:contain;
+  background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.3);
+  border-radius:50%; padding:.4rem;
+}
+.hero-banner h1{ position:relative; z-index:1; color:var(--blanco); font-size:clamp(2rem,5vw,3.4rem); max-width:32ch; margin-inline:auto; }
+.hero-banner__lema{
+  position:relative; z-index:1;
+  font-family:var(--fuente-display); letter-spacing:.3em; text-transform:uppercase;
+  color:var(--azul-100); font-size:1.4rem; margin-top:.6rem;
+}
+.hero-banner__cta{ position:relative; z-index:1; display:flex; gap:.8rem; justify-content:center; flex-wrap:wrap; margin-top:1.8rem; }
+
+/* =========================================================
+   3. SLIDER
+   ========================================================= */
+.slider{ overflow:hidden; background:var(--negro); padding:1.6rem 0; }
+.slider__pista{ display:flex; width:max-content; gap:1rem; padding-inline:1rem; animation:desplazarSlider 28s linear infinite; }
+.slider__item{ flex:0 0 auto; width:330px; height:240px; border-radius:var(--radio); overflow:hidden; border:2px solid var(--azul-700); }
+.slider__item img{ width:100%; height:100%; object-fit:cover; }
+@keyframes desplazarSlider{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){ .slider__pista{ animation:none; } }
+
+/* =========================================================
+   4. WIDGETS: PARTIDOS / RESULTADOS / NOTICIAS
+   ========================================================= */
+.widgets{ background:var(--gris-100); }
+.widgets__grid{ display:grid; grid-template-columns:1fr; gap:1.4rem; }
+@media (min-width:760px){ .widgets__grid{ grid-template-columns:1fr 1fr; } }
+.widget-card{ background:var(--blanco); border:1px solid var(--borde); border-radius:var(--radio); padding:1.4rem; box-shadow:var(--sombra); }
+.widget-card h3{ display:flex; align-items:center; gap:.5rem; font-size:1.3rem; border-bottom:2px solid var(--azul-100); padding-bottom:.6rem; margin-bottom:.8rem; }
+.partido{ display:flex; justify-content:space-between; align-items:center; gap:.6rem; padding:.7rem 0; border-bottom:1px dashed var(--borde); font-size:.95rem; }
+.partido:last-child{ border-bottom:none; }
+.partido__equipos{ font-weight:700; color:var(--azul-900); }
+.partido__meta{ color:var(--gris-600); font-size:.85rem; }
+.partido__resultado{ font-family:var(--fuente-display); font-size:1.2rem; color:var(--azul-700); background:var(--azul-100); border-radius:6px; padding:.15rem .6rem; }
+
+.noticias__grid{ display:grid; grid-template-columns:1fr; gap:1.4rem; margin-top:1.6rem; }
+@media (min-width:640px){ .noticias__grid{ grid-template-columns:1fr 1fr; } }
+@media (min-width:980px){ .noticias__grid{ grid-template-columns:repeat(3,1fr); } }
+.noticia-card{ background:var(--blanco); border:1px solid var(--borde); border-radius:var(--radio); overflow:hidden; box-shadow:var(--sombra); display:flex; flex-direction:column; transition:transform var(--dur) var(--easing); }
+.noticia-card:hover{ transform:translateY(-4px); }
+.noticia-card img{ height:170px; object-fit:cover; }
+.noticia-card__cuerpo{ padding:1rem 1.1rem 1.3rem; }
+.noticia-card__fecha{ font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--azul-500); font-weight:700; }
+.noticia-card h4{ font-family:var(--fuente-cuerpo); font-weight:700; color:var(--negro); margin:.3rem 0 .4rem; }
+.noticia-card p{ color:var(--gris-600); font-size:.92rem; margin:0; }
+
+/* =========================================================
+   5. HISTORIA
+   ========================================================= */
+.historia{ background:var(--blanco); }
+.historia__caja{ background:var(--azul-100); border-left:5px solid var(--azul-700); border-radius:var(--radio); padding:1.6rem 1.8rem; color:var(--gris-900); position:relative; z-index:1; }
+
+/* =========================================================
+   6. FILTROS (planteles y staff)
+   ========================================================= */
+.filtros-bar{ display:flex; flex-wrap:wrap; align-items:center; gap:.9rem; margin:1.4rem 0 1.8rem; }
+.filtros-bar select{
+  appearance:none; background:var(--blanco); border:2px solid var(--borde); color:var(--azul-900);
+  font-weight:600; font-size:.9rem; padding:.6rem 2.2rem .6rem 1rem; border-radius:999px; cursor:pointer;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0 L5 6 L10 0' fill='none' stroke='%2314418E' stroke-width='1.6'/></svg>");
+  background-repeat:no-repeat; background-position:right 1rem center;
+  transition:border-color .2s;
+}
+.filtros-bar select:hover, .filtros-bar select:focus-visible{ border-color:var(--azul-500); outline:none; }
+.filtros-bar__contador{ margin-left:auto; color:var(--gris-600); font-size:.85rem; font-weight:600; }
+
+/* =========================================================
+   7. TARJETAS DE JUGADOR / STAFF
+   Crossfade con dos <img> superpuestas + dorsal
+   ========================================================= */
+.player-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem; }
+@media (min-width:620px){ .player-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (min-width:960px){ .player-grid{ grid-template-columns:repeat(4,1fr); } }
+
+.player-card{
+  position:relative; cursor:pointer; border-radius:var(--radio); overflow:hidden;
+  background:var(--gris-100); border:1px solid var(--borde); box-shadow:var(--sombra);
+  transition:transform var(--dur) var(--easing), box-shadow var(--dur) var(--easing);
+}
+.player-card:hover, .player-card:focus-visible{ transform:translateY(-6px); box-shadow:var(--sombra-fuerte); outline:none; }
+.player-card__media{ position:relative; aspect-ratio:3/4; overflow:hidden; }
+.player-card__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .5s ease, transform .6s ease; }
+.player-card__img--secundaria{ opacity:0; transform:scale(1.05); }
+.player-card:hover .player-card__img--principal, .player-card:focus-visible .player-card__img--principal{ opacity:0; }
+.player-card:hover .player-card__img--secundaria, .player-card:focus-visible .player-card__img--secundaria{ opacity:1; transform:scale(1); }
+.player-card__dorsal{
+  position:absolute; top:.6rem; right:.6rem;
+  background:var(--acento); color:var(--blanco); font-family:var(--fuente-display);
+  font-size:1rem; padding:.15rem .55rem; border-radius:6px; z-index:2;
+}
+.player-card__pie{ padding:.7rem .8rem; display:flex; flex-direction:column; gap:.15rem; }
+.player-card__pie strong{ color:var(--azul-900); font-size:.95rem; }
+.player-card__pie span{ color:var(--gris-600); font-size:.78rem; }
+
+/* Staff principal destacado */
+.staff-lead{
+  display:grid; grid-template-columns:1fr; gap:1.4rem; background:var(--azul-900); color:var(--blanco);
+  border-radius:var(--radio); overflow:hidden; margin-bottom:2.4rem; position:relative;
+}
+@media (min-width:800px){ .staff-lead{ grid-template-columns:330px 1fr; } }
+.staff-lead__foto{ height:420px; background:var(--azul-800); }
+.staff-lead__foto img{ width:100%; height:100%; object-fit:cover; }
+.staff-lead__info{ padding:1.6rem 1.8rem; }
+.staff-lead__info h3{ color:var(--blanco); font-size:1.7rem; margin-bottom:.2rem; }
+.staff-lead__cargo{ color:var(--azul-100); font-family:var(--fuente-display); letter-spacing:.12em; text-transform:uppercase; font-size:.85rem; margin-bottom:.8rem; display:block; }
+
+/* =========================================================
+   8. MODAL DE JUGADOR / STAFF (tarjeta "al centro")
+   ========================================================= */
+.modal{
+  position:fixed; inset:0; z-index:2000; display:flex;
+  align-items:center; justify-content:center; padding:1.2rem;
+  background:rgba(10,15,40,.72); backdrop-filter:blur(4px);
+}
+.modal__caja{
+  background:var(--blanco); border-radius:16px; max-width:760px; width:100%;
+  max-height:90vh; overflow:auto; position:relative; box-shadow:var(--sombra-fuerte);
+}
+.modal--abierto .modal__caja{ animation:aparecerModal .35s var(--easing); }
+@keyframes aparecerModal{ from{ opacity:0; transform:translateY(30px) scale(.97); } to{ opacity:1; transform:none; } }
+.modal__cerrar{
+  position:absolute; top:.8rem; right:.8rem; z-index:3;
+  width:38px; height:38px; border-radius:50%; border:none; background:var(--blanco);
+  box-shadow:var(--sombra); font-size:1.3rem; cursor:pointer; color:var(--azul-900);
+}
+.modal-jugador{ display:grid; grid-template-columns:1fr; }
+@media (min-width:640px){ .modal-jugador{ grid-template-columns:1fr 1fr; } }
+.modal-jugador__media{ position:relative; background:var(--azul-900); aspect-ratio:3/4; }
+.modal-jugador__img{ width:100%; height:100%; object-fit:cover; transition:opacity .22s ease; }
+.modal-jugador__dorsal{
+  position:absolute; top:1rem; left:1rem; background:var(--acento); color:var(--blanco);
+  font-family:var(--fuente-display); font-size:1.3rem; padding:.2rem .7rem; border-radius:8px;
+}
+.modal-jugador__info{ padding:1.6rem; display:flex; flex-direction:column; gap:.9rem; }
+.modal-jugador__nombre{ font-size:1.6rem; margin:0; }
+.modal-jugador__categoria{ color:var(--azul-500); font-weight:700; font-size:.9rem; text-transform:uppercase; letter-spacing:.06em; }
+.modal-jugador__descripcion{ color:var(--gris-600); font-size:.95rem; }
+.modal-jugador__stats{ display:grid; grid-template-columns:repeat(2,1fr); gap:.8rem; }
+.modal-jugador__stats div{ background:var(--gris-100); border-radius:8px; padding:.6rem .8rem; }
+.modal-jugador__stats strong{ display:block; font-family:var(--fuente-display); font-size:1.2rem; color:var(--azul-900); }
+.modal-jugador__stats span{ font-size:.72rem; color:var(--gris-600); text-transform:uppercase; letter-spacing:.05em; }
+
+/* =========================================================
+   9. INDUMENTARIA — flip 3D + WhatsApp
+   ========================================================= */
+.merch-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.2rem; }
+@media (min-width:640px){ .merch-grid{ grid-template-columns:repeat(3,1fr); } }
+.merch-card{ perspective:1400px; aspect-ratio:3/4; cursor:pointer; }
+.merch-card__inner{
+  position:relative; width:100%; height:100%; transition:transform .6s var(--easing);
+  transform-style:preserve-3d;
+}
+.merch-card--vuelta .merch-card__inner{ transform:rotateY(180deg); }
+.merch-card__cara{
+  position:absolute; inset:0; backface-visibility:hidden; border-radius:var(--radio);
+  overflow:hidden; border:1px solid var(--borde); box-shadow:var(--sombra);
+}
+.merch-card__frente{ background:var(--gris-100); }
+.merch-card__frente img{ width:100%; height:100%; object-fit:cover; }
+.merch-card__etiqueta{
+  position:absolute; left:0; right:0; bottom:0; padding:.6rem .8rem;
+  background:linear-gradient(0deg, rgba(10,35,84,.9), rgba(10,35,84,0));
+  color:var(--blanco); font-weight:700; font-size:.85rem;
+}
+.merch-card__dorso{
+  background:var(--azul-900); color:var(--blanco); transform:rotateY(180deg);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:.7rem; padding:1.2rem; text-align:center;
+}
+.merch-card__dorso h4{ margin:0; font-size:1.05rem; }
+.merch-card__dorso p{ margin:0; color:var(--azul-100); font-size:.85rem; }
+
+/* =========================================================
+   10. GALERÍA POR TEMPORADA + LIGHTBOX
+   ========================================================= */
+.galeria-tabs{ display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.4rem; }
+.tab{
+  border:2px solid var(--borde); background:var(--blanco); color:var(--azul-900);
+  font-family:var(--fuente-display); letter-spacing:.05em; font-size:1.05rem;
+  padding:.4rem 1.2rem; border-radius:999px; cursor:pointer; transition:all .2s ease;
+}
+.tab:hover{ border-color:var(--azul-500); }
+.tab--activa{ background:var(--azul-700); border-color:var(--azul-700); color:var(--blanco); }
+
+.galeria-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+@media (min-width:700px){ .galeria-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (min-width:1000px){ .galeria-grid{ grid-template-columns:repeat(4,1fr); } }
+.galeria-item{ margin:0; border-radius:var(--radio); overflow:hidden; cursor:zoom-in; aspect-ratio:4/3; border:1px solid var(--borde); }
+.galeria-item img{ width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+.galeria-item:hover img{ transform:scale(1.08); }
+
+.lightbox{ position:fixed; inset:0; z-index:2100; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,.92); padding:1.2rem; }
+.lightbox--abierto{ display:flex; }
+.lightbox__caja{ position:relative; max-width:min(920px,92vw); max-height:88vh; }
+.lightbox__caja img{ max-width:100%; max-height:88vh; border-radius:8px; margin-inline:auto; }
+.lightbox__cerrar{ position:absolute; top:-3rem; right:0; background:none; border:none; color:var(--blanco); font-size:1.8rem; cursor:pointer; }
+.lightbox__anterior, .lightbox__siguiente{
+  position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.12); color:var(--blanco);
+  border:none; width:46px; height:46px; border-radius:50%; font-size:1.4rem; cursor:pointer;
+}
+.lightbox__anterior{ left:-1.4rem; } .lightbox__siguiente{ right:-1.4rem; }
+@media (max-width:640px){ .lightbox__anterior{ left:.2rem; } .lightbox__siguiente{ right:.2rem; } }
+.lightbox__descarga{
+  display:inline-flex; align-items:center; gap:.4rem; margin-top:.8rem; color:var(--blanco);
+  font-size:.85rem; text-decoration:underline;
+}
+
+/* =========================================================
+   11. STAFF: título de sección con línea
+   ========================================================= */
+.staff-rama{ margin-top:2.2rem; }
+.staff-rama__titulo{ display:flex; align-items:center; gap:.7rem; font-size:1.25rem; margin-bottom:1.1rem; }
+.staff-rama__titulo::after{ content:""; flex:1; height:2px; background:var(--azul-100); }
+
+/* =========================================================
+   12. INFO: TABLAS DE HORARIOS
+   ========================================================= */
+.horarios{ background:var(--gris-100); }
+.horarios__ramas{ display:grid; grid-template-columns:1fr; gap:1.8rem; }
+@media (min-width:900px){ .horarios__ramas{ grid-template-columns:1fr 1fr; } }
+.horario-tabla{ background:var(--blanco); border:1px solid var(--borde); border-radius:var(--radio); overflow:hidden; box-shadow:var(--sombra); }
+.horario-tabla__cabecera{ background:var(--azul-700); color:var(--blanco); padding:.9rem 1.1rem; font-family:var(--fuente-display); letter-spacing:.06em; font-size:1.15rem; }
+table{ width:100%; border-collapse:collapse; }
+thead th{ text-align:left; background:var(--azul-100); color:var(--azul-900); font-size:.8rem; letter-spacing:.05em; text-transform:uppercase; padding:.7rem .9rem; }
+tbody td{ padding:.75rem .9rem; border-top:1px solid var(--borde); font-size:.92rem; color:var(--gris-900); }
+tbody tr:nth-child(even){ background:var(--gris-100); }
+.categoria{ font-weight:700; color:var(--azul-700); }
+
+.mapas{ margin-top:2.2rem; display:flex; flex-wrap:wrap; gap:1rem; }
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; padding:.85rem 1.4rem; border-radius:999px;
+  font-weight:700; font-size:.95rem; transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+  border:2px solid transparent; cursor:pointer;
+}
+.btn-map{ background:var(--azul-700); color:var(--blanco); box-shadow:var(--sombra); }
+.btn-map:hover{ background:var(--azul-500); transform:translateY(-2px); }
+.btn-outline{ background:transparent; border-color:var(--blanco); color:var(--blanco); }
+.btn-outline:hover{ background:var(--blanco); color:var(--azul-900); }
+.btn-outline-azul{ background:transparent; border-color:var(--azul-700); color:var(--azul-700); }
+.btn-outline-azul:hover{ background:var(--azul-700); color:var(--blanco); }
+.btn-acento{ background:var(--acento); color:var(--blanco); box-shadow:0 10px 24px rgba(255,122,61,.35); }
+.btn-acento:hover{ background:#e8672a; transform:translateY(-2px); }
+.btn-whatsapp{ background:#25D366; color:var(--negro); width:100%; justify-content:center; }
+.btn-whatsapp:hover{ background:#1ebe5b; transform:translateY(-2px); }
+
+/* =========================================================
+   13. INSCRIPCIÓN
+   ========================================================= */
+.inscripcion__form{ display:grid; gap:1rem; padding:1.8rem 1.8rem 2rem; }
+.inscripcion__form h3{ margin-bottom:.1rem; }
+.campo{ display:grid; gap:.35rem; }
+.campo label{ font-size:.82rem; font-weight:700; color:var(--azul-900); }
+.campo input, .campo select{
+  border:2px solid var(--borde); border-radius:8px; padding:.7rem .9rem; font-size:.95rem; font-family:inherit;
+}
+.campo input:focus, .campo select:focus{ outline:none; border-color:var(--azul-500); }
+.campo-fila{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.inscripcion__aviso{
+  padding:2.4rem 1.8rem; text-align:center; display:flex; flex-direction:column; align-items:center; gap:.8rem;
+}
+.inscripcion__aviso strong{ font-size:1.15rem; color:var(--azul-900); }
+
+/* =========================================================
+   14. FOOTER / CONTACTO
+   ========================================================= */
+.site-footer{ background:var(--negro); color:var(--blanco); padding:2.6rem 0 1.6rem; position:relative; overflow:hidden; }
+.footer-wrap{ max-width:1220px; margin-inline:auto; padding-inline:1.25rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1.2rem; position:relative; z-index:1; }
+.footer-brand strong{ color:var(--blanco); font-family:var(--fuente-display); letter-spacing:.04em; font-size:1.1rem; }
+.footer-links{ display:flex; gap:.9rem; flex-wrap:wrap; }
+.footer-copy{ width:100%; text-align:center; color:#8b93a7; font-size:.8rem; margin-top:1.4rem; border-top:1px solid #262b36; padding-top:1.2rem; position:relative; z-index:1; }
+
+/* Botón flotante de inscripción */
+.flotante-inscripcion{
+  position:fixed; right:1.2rem; bottom:1.2rem; z-index:900;
+  box-shadow:0 14px 34px rgba(255,122,61,.45);
+}
+
+/* Utilidad genérica para placeholders */
+.placeholder-img{ background:repeating-linear-gradient(45deg, var(--azul-100), var(--azul-100) 10px, var(--blanco) 10px, var(--blanco) 20px); }
+
+/* =========================================================
+   15. DEGRADADOS DE MARCA (azul oscuro -> azul claro)
+   ========================================================= */
+.degradado-vertical{ background:linear-gradient(180deg, var(--azul-900) 0%, var(--azul-700) 55%, var(--azul-500) 100%); }
+.degradado-diagonal{ background:linear-gradient(135deg, var(--azul-900) 0%, var(--azul-700) 50%, var(--azul-500) 100%); }
+.degradado-suave{ background:linear-gradient(180deg, var(--azul-100) 0%, var(--blanco) 100%); }
+
+.hero-banner{ background:linear-gradient(180deg, var(--azul-900) 0%, var(--azul-700) 55%, var(--azul-500) 100%); }
+.staff-lead{ background:linear-gradient(135deg, var(--azul-900) 0%, var(--azul-700) 100%); }
+.modal-jugador__media{ background:linear-gradient(180deg, var(--azul-900), var(--azul-700)); }
+
+/* Páginas internas: menos blanco plano, más presencia azul */
+body:not(.tiene-splash){ background:linear-gradient(180deg, var(--azul-100) 0%, var(--blanco) 420px); }
+.franja-cancha{ height:22px; }
+
+/* =========================================================
+   16. MÁS VARIEDAD DE TRIÁNGULOS (claros/medios), baja
+   interferencia con la lectura: siempre detrás del texto y
+   en zonas de borde, nunca sobre bloques de contenido denso.
+   ========================================================= */
+.tri-claro{ background:var(--azul-100); opacity:.7; }
+.tri-medio{ background:var(--azul-500); opacity:.10; }
+.contenedor > *{ position:relative; z-index:1; }
+
+/* =========================================================
+   17. PARTÍCULAS TRIANGULARES (al cerrar tarjetas/modales)
+   ========================================================= */
+.particulas-triangulo{ position:absolute; inset:0; pointer-events:none; overflow:visible; z-index:6; }
+.particulas-triangulo span{
+  position:absolute; top:50%; left:50%; width:12px; height:12px;
+  clip-path:polygon(50% 0%, 100% 100%, 0% 100%);
+  transform:translate(-50%,-50%) rotate(var(--angulo)) translateY(0);
+  opacity:1;
+  animation:particulaVolar .55s ease-out forwards;
+}
+@keyframes particulaVolar{
+  to{ transform:translate(-50%,-50%) rotate(var(--angulo)) translateY(calc(-1 * var(--distancia))); opacity:0; }
+}
+
+/* =========================================================
+   18. CIERRE SUAVE DE MODALES / LIGHTBOX
+   El fondo y la caja ya tienen transición de opacity por
+   defecto (ver bloque .modal); acá solo definimos la salida
+   de la caja para que no sea un "click y desaparece".
+   ========================================================= */
+.modal{
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .3s ease, visibility 0s linear .3s;
+}
+.modal--abierto{ opacity:1; visibility:visible; pointer-events:auto; transition:opacity .3s ease, visibility 0s linear 0s; }
+.modal--cerrando{ opacity:.4 !important; transition:opacity .32s ease; }
+.modal--cerrando .modal__caja{ animation:desaparecerModal .32s ease forwards; }
+@keyframes desaparecerModal{
+  from{ opacity:1; transform:none; }
+  to{ opacity:0; transform:translateY(18px) scale(.96); }
+}
+
+.lightbox{ opacity:1; }
+.lightbox--cerrando{ animation:desvanecerLightbox .28s ease forwards; }
+@keyframes desvanecerLightbox{ from{ opacity:1; } to{ opacity:0; } }
+
+/* =========================================================
+   19. SELECTS PERSONALIZADOS (reemplazan al <select> nativo)
+   ========================================================= */
+.select-custom{ position:relative; }
+.select-custom__boton{
+  display:flex; align-items:center; gap:.6rem; background:var(--blanco); border:2px solid var(--borde); color:var(--azul-900);
+  font-weight:600; font-size:.9rem; padding:.6rem 1.1rem; border-radius:999px; cursor:pointer;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.select-custom__boton:hover, .select-custom.abierto .select-custom__boton{
+  border-color:var(--azul-500); box-shadow:0 8px 20px rgba(20,65,142,.14);
+}
+.select-custom__flecha{ color:var(--azul-500); transition:transform .25s ease; flex-shrink:0; }
+.select-custom.abierto .select-custom__flecha{ transform:rotate(180deg); }
+.select-custom__lista{
+  position:absolute; top:calc(100% + .55rem); left:0; min-width:180px; background:var(--blanco);
+  border:1px solid var(--borde); border-radius:14px; box-shadow:var(--sombra-fuerte); padding:.4rem; z-index:80;
+  opacity:0; transform:translateY(-8px) scale(.97); pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease; list-style:none; margin:0;
+}
+.select-custom.abierto .select-custom__lista{ opacity:1; transform:none; pointer-events:auto; }
+.select-custom__opcion{
+  padding:.55rem .9rem; border-radius:10px; font-size:.88rem; color:var(--gris-900);
+  cursor:pointer; white-space:nowrap; transition:background .15s ease, color .15s ease;
+}
+.select-custom__opcion:hover{ background:var(--azul-100); color:var(--azul-900); }
+.select-custom__opcion--activa{ background:var(--azul-700); color:var(--blanco); font-weight:700; }
+.select-custom__opcion--activa:hover{ background:var(--azul-700); color:var(--blanco); }
+
+/* =========================================================
+   20. INDUMENTARIA: etiqueta de tipo (reemplaza el dorsal
+   numérico en las tarjetas de prendas)
+   ========================================================= */
+.player-card__dorsal--tipo{ font-family:var(--fuente-cuerpo); font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; }
+
+/* =========================================================
+   21. INSTAGRAM: color de marca propio (rosa/magenta)
+   ========================================================= */
+.btn-instagram{
+  background:linear-gradient(135deg,#f58529,#dd2a7b 45%,#8134af 75%,#515bd4);
+  color:var(--blanco); border-color:transparent;
+}
+.btn-instagram:hover{ filter:brightness(1.08); transform:translateY(-2px); }
+
+/* =========================================================
+   22. PANTALLA DE CARGA: más triángulos, degradado oscuro
+   -> claro, y cortina que se desarma en triángulos
+   ========================================================= */
+.intro-splash{ background:linear-gradient(180deg, var(--azul-900) 0%, var(--azul-700) 55%, var(--azul-500) 100%); }
+
+.intro-splash__cortina{
+  position:absolute; inset:0; z-index:5; display:flex; opacity:0; pointer-events:none;
+}
+.intro-splash__cortina .diente{
+  flex:1 0 auto; height:100%;
+  clip-path:polygon(0% 100%, 50% 0%, 100% 100%);
+}
+.diente:nth-child(6n+1){ background:var(--azul-900); }
+.diente:nth-child(6n+2){ background:var(--azul-800); }
+.diente:nth-child(6n+3){ background:var(--azul-700); }
+.diente:nth-child(6n+4){ background:var(--azul-500); }
+.diente:nth-child(6n+5){ background:var(--azul-700); }
+.diente:nth-child(6n){ background:var(--azul-800); }
+
+.intro-splash--salir .intro-splash__cortina{ opacity:1; }
+.intro-splash--salir .intro-splash__contenido{ animation:desvanecerContenido .3s ease forwards; }
+@keyframes desvanecerContenido{ to{ opacity:0; transform:translateY(-10px); } }
+
+.intro-splash--salir .diente{ animation:volarDiente .85s cubic-bezier(.5,0,.2,1) forwards; }
+.diente:nth-child(1){ animation-delay:0ms; } .diente:nth-child(2){ animation-delay:35ms; }
+.diente:nth-child(3){ animation-delay:70ms; } .diente:nth-child(4){ animation-delay:105ms; }
+.diente:nth-child(5){ animation-delay:140ms; } .diente:nth-child(6){ animation-delay:175ms; }
+.diente:nth-child(7){ animation-delay:210ms; } .diente:nth-child(8){ animation-delay:245ms; }
+.diente:nth-child(9){ animation-delay:280ms; } .diente:nth-child(10){ animation-delay:315ms; }
+.diente:nth-child(11){ animation-delay:350ms; } .diente:nth-child(12){ animation-delay:385ms; }
+.diente:nth-child(13){ animation-delay:420ms; } .diente:nth-child(14){ animation-delay:455ms; }
+.diente:nth-child(15){ animation-delay:490ms; } .diente:nth-child(16){ animation-delay:525ms; }
+.diente:nth-child(17){ animation-delay:560ms; } .diente:nth-child(18){ animation-delay:595ms; }
+.diente:nth-child(19){ animation-delay:630ms; } .diente:nth-child(20){ animation-delay:665ms; }
+@keyframes volarDiente{
+  0%{ transform:translateY(0) rotate(0deg); opacity:1; }
+  100%{ transform:translateY(-135%) rotate(-8deg); opacity:0; }
+}
+.intro-splash{ transition:opacity .4s ease; }
+
+/* =========================================================
+   23. INSTITUCIONAL: banner de 2 fotos con transición
+   triangular (clip-path en zigzag, no un fundido plano)
+   ========================================================= */
+.institucional-hero{ padding:0; }
+.institucional-hero__media{ position:relative; width:100%; height:min(66vh, 540px); overflow:hidden; }
+.institucional-hero__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.institucional-hero__img--b{
+  clip-path:polygon(0% 0%, 8% 0%, 0% 12.5%, 8% 25%, 0% 37.5%, 8% 50%, 0% 62.5%, 8% 75%, 0% 87.5%, 8% 100%, 0% 100%);
+  transition:clip-path 1.15s cubic-bezier(.65,0,.35,1);
+}
+.institucional-hero__media.mostrar-b .institucional-hero__img--b{
+  clip-path:polygon(0% 0%, 100% 0%, 92% 12.5%, 100% 25%, 92% 37.5%, 100% 50%, 92% 62.5%, 100% 75%, 92% 87.5%, 100% 100%, 0% 100%);
+}
+.institucional-hero__degrade{
+  position:absolute; inset:auto 0 0 0; height:45%;
+  background:linear-gradient(0deg, rgba(10,35,84,.75), rgba(10,35,84,0));
+  z-index:2; pointer-events:none;
+}
+.institucional-hero__texto{
+  position:absolute; left:0; right:0; bottom:1.6rem; z-index:3; text-align:center; color:var(--blanco);
+}
+.institucional-hero__texto p{ font-family:var(--fuente-display); letter-spacing:.2em; text-transform:uppercase; margin:0; font-size:1rem; }
+
+/* =========================================================
+   24. GALERÍA: botón de descarga más prominente
+   ========================================================= */
+.lightbox__descarga{
+  display:inline-flex; align-items:center; gap:.5rem; margin-top:1rem;
+  background:var(--azul-500); color:var(--blanco); text-decoration:none;
+  font-weight:700; font-size:.95rem; padding:.75rem 1.6rem; border-radius:999px;
+  box-shadow:0 12px 26px rgba(30,86,176,.4); transition:transform .2s ease, background .2s ease;
+}
+.lightbox__descarga:hover{ background:var(--azul-700); transform:translateY(-2px); }
+
+/* =========================================================
+   25. FIX: los filtros quedaban tapados por las tarjetas.
+   La lista desplegable vive dentro de un contenedor que forma
+   su propio "stacking context"; si ese contenedor no tiene más
+   z-index que la grilla de tarjetas, pierde el empate por orden
+   de aparición en el HTML. Le damos más jerarquía explícita.
+   ========================================================= */
+.filtros-bar{ position:relative; z-index:30; }
+
+/* =========================================================
+   26. INSTAGRAM: color sólido de marca (el degradado se veía
+   como un bloque rectangular sobre el botón redondeado)
+   ========================================================= */
+.btn-instagram{ background:#E1306C; color:var(--blanco); border-color:transparent; }
+.btn-instagram:hover{ background:#c11f57; transform:translateY(-2px); }
+
+/* =========================================================
+   27. TEXTURA DE TRIÁNGULOS CHICOS (fondo del carrusel y del
+   footer, reemplaza el negro liso)
+   ========================================================= */
+.textura-triangulos{
+  background-image:
+    linear-gradient(60deg, rgba(255,255,255,.05) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,.05) 75.5%, rgba(255,255,255,.05)),
+    linear-gradient(-60deg, rgba(255,255,255,.05) 25%, transparent 25.5%, transparent 75%, rgba(255,255,255,.05) 75.5%, rgba(255,255,255,.05));
+  background-size:26px 46px;
+}
+.slider{ background-color:var(--azul-900); }
+.site-footer{ background-color:var(--negro); }
+.site-footer.textura-triangulos{
+  background-image:
+    linear-gradient(60deg, rgba(30,86,176,.16) 25%, transparent 25.5%, transparent 75%, rgba(30,86,176,.16) 75.5%, rgba(30,86,176,.16)),
+    linear-gradient(-60deg, rgba(20,65,142,.18) 25%, transparent 25.5%, transparent 75%, rgba(20,65,142,.18) 75.5%, rgba(20,65,142,.18));
+  background-size:20px 34px;
+}
+
+/* Fondo general un poco más presente en todas las páginas internas */
+body:not(.tiene-splash){ background:linear-gradient(180deg, var(--azul-100) 0%, var(--gris-100) 100%); }
+
+/* =========================================================
+   28. FICHA DE JUGADOR/STAFF/PRENDA: el panel de texto se veía
+   muy blanco y "vacío" — degradado suave + triángulos en las
+   esquinas.
+   ========================================================= */
+.modal-jugador__info{
+  background:linear-gradient(165deg, var(--azul-100) 0%, var(--blanco) 55%);
+  position:relative; overflow:hidden;
+}
+.modal-jugador__info::before{
+  content:""; position:absolute; top:-2.2rem; right:-2.2rem; width:7rem; height:7rem;
+  background:var(--azul-500); opacity:.14; clip-path:polygon(0 0, 100% 0, 100% 100%); z-index:0;
+}
+.modal-jugador__info::after{
+  content:""; position:absolute; bottom:-1.6rem; left:-1.6rem; width:4.6rem; height:4.6rem;
+  background:var(--acento); opacity:.12; clip-path:polygon(50% 0, 100% 100%, 0 100%); z-index:0;
+}
+.modal-jugador__info > *{ position:relative; z-index:1; }
+
+/* =========================================================
+   29. TRANSICIONES DE NAVBAR/FRANJA entre páginas
+   Entrada al cargar + salida simulada al hacer click en un
+   link interno (ver initTransicionesNav en app.js).
+   ========================================================= */
+@keyframes entrarNav{ from{ opacity:0; transform:translateY(-16px); } to{ opacity:1; transform:none; } }
+.site-header{ animation:entrarNav .5s var(--easing) both; }
+@keyframes entrarFranja{ from{ opacity:0; transform:scaleX(0); } to{ opacity:1; transform:scaleX(1); } }
+.franja-cancha{ transform-origin:left center; animation:entrarFranja .6s var(--easing) .08s both; }
+
+body.pagina-saliendo .site-header{ animation:salirNav .3s ease forwards; }
+@keyframes salirNav{ to{ opacity:0; transform:translateY(-16px); } }
+body.pagina-saliendo .franja-cancha{ animation:salirFranja .26s ease forwards; }
+@keyframes salirFranja{ to{ opacity:0; transform:scaleX(0); } }
+body.pagina-saliendo main{ animation:salirMain .26s ease forwards; }
+@keyframes salirMain{ to{ opacity:0; } }
+
+/* =========================================================
+   30. SELECT PERSONALIZADO DENTRO DE FORMULARIOS (inscripción)
+   Versión que ocupa todo el ancho del campo, esquinas menos
+   redondeadas para que combine con los <input> de al lado.
+   ========================================================= */
+.select-custom--form{ width:100%; }
+.select-custom--form .select-custom__boton{ width:100%; border-radius:8px; justify-content:space-between; padding:.7rem .9rem; }
+.select-custom--form .select-custom__lista{ width:100%; min-width:0; }
+/* El modal de inscripción es corto: no necesita scroll propio, y el
+   scroll (overflow:auto) le cortaba el menú desplegable. */
+.modal__caja--form{ overflow:visible; }
+
+/* =========================================================
+   31. MODAL DE NOTICIA
+   ========================================================= */
+.noticia-card{ cursor:pointer; }
+.modal-noticia__img{ width:100%; max-height:320px; object-fit:cover; border-radius:16px 16px 0 0; }
+.modal-noticia__cuerpo{ padding:1.5rem 1.7rem 2rem; }
+.modal-noticia__fecha{ font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--azul-500); font-weight:700; }
+.modal-noticia__titulo{ margin:.4rem 0 .7rem; }
+.modal-noticia__texto{ color:var(--gris-600); }
+#modal-noticia .modal__caja{ max-width:600px; }
+
+/* =========================================================
+   32. RESPONSIVE — refuerzos para que se vea prolijo en celular
+   ========================================================= */
+.horario-tabla{ overflow-x:auto; }
+.horario-tabla table{ min-width:520px; }
+
+@media (max-width:480px){
+  .filtros-bar{ flex-direction:column; align-items:stretch; }
+  .filtros-bar__contador{ margin-left:0; }
+  .select-custom{ width:100%; }
+  .select-custom .select-custom__boton{ width:100%; justify-content:space-between; }
+  .select-custom__lista{ width:100%; min-width:0; }
+  .intro-splash__logos{ gap:1.2rem; }
+  .campo-fila{ grid-template-columns:1fr; }
+}
+
+@media (max-width:640px){
+  .hero-banner{ padding:3.4rem 1rem 4.5rem; }
+  .modal__caja{ max-height:94vh; }
+  .lightbox__anterior, .lightbox__siguiente{ width:40px; height:40px; font-size:1.2rem; }
+}
